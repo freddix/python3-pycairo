@@ -36,8 +36,7 @@ export CFLAGS="%{rpmcflags}"
 export CXXFLAGS="%{rpmcxxflags}"
 export PYTHONDIR="%{py3_sitedir}"
 export PYTHON=python3
-python3 ./waf --version
-python3 ./waf %{?_smp_mflags} configure \
+%{__python3} ./waf %{?_smp_mflags} configure \
 	--libdir=%{_libdir} \
 	--prefix=%{_prefix}
 
@@ -56,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING NEWS README
 %dir %{py3_sitedir}/cairo
-%attr(755,root,root) %{py3_sitedir}/cairo/_cairo.cpython-*.so
+%attr(755,root,root) %{py3_sitedir}/cairo/_cairo.so
 %{py3_sitedir}/cairo/*.py
 %{py3_sitedir}/cairo/*.py[co]
 
