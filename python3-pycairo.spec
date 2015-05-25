@@ -1,11 +1,13 @@
 Summary:	Python 3.x Cairo bindings
 Name:		python3-pycairo
 Version:	1.10.0
-Release:	2
+Release:	4
 License:	LGPL v3
 Group:		Libraries
 Source0:	http://cairographics.org/releases/pycairo-%{version}.tar.bz2
 # Source0-md5:	e6fd3f2f1e6a72e0db0868c4985669c5
+Patch0:		pycairo-1.10.0-waf-unpack.patch
+Patch1:		pycairo-1.10.0-waf-python34.patch
 URL:		http://cairographics.org/
 BuildRequires:	cairo-devel
 BuildRequires:	pkg-config
@@ -27,6 +29,9 @@ Development files for pycairo.
 
 %prep
 %setup -qn pycairo-%{version}
+%patch0 -p1
+cd $(./waf unpack)
+%patch1 -p1
 
 %build
 export CC="%{__cc}"
